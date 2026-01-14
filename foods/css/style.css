@@ -148,7 +148,7 @@ header a:hover{
   height: 100vh;
   width: 100%;
   position: relative;
-  background: url("../src/img/cayman2014.jpg");
+  background: url("../src/img/background.png");
   background-position: center;
   background-size: cover;
 
@@ -203,7 +203,7 @@ header a:hover{
   padding: 0.5rem 0 0;
 }
 
-#cars2 > h2{
+#foods > h2{
   margin: 3rem 8rem;
   font-size: 2.4rem;
   color: white;
