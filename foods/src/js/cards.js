@@ -2,7 +2,7 @@
 
 const containers = document.querySelectorAll('.container');
 
-function generateCarCard({name, img, origin, eaten}) {
+function generateCarCard({name, img, origin, type, eaten}) {
     const card = document.createElement('div');
     card.classList.add("card");
     
@@ -33,7 +33,7 @@ function generateCarCards(cars) {
     cars.forEach(carItem => {
         const card = generateCarCard(carItem);
 
-        switch (carItem.origin) {
+        switch (carItem.type) {
             case "mcdonald":
                 containers[0].appendChild(card);
                 break;
