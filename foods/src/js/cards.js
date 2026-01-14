@@ -2,7 +2,7 @@
 
 const containers = document.querySelectorAll('.container');
 
-function generateCarCard({name, img, origin}) {
+function generateCarCard({name, img, origin, eaten}) {
     const card = document.createElement('div');
     card.classList.add("card");
     
@@ -13,7 +13,6 @@ function generateCarCard({name, img, origin}) {
 
     const title = document.createElement('h3');
     title.textContent = name;
-    title.classList.add("car-name");
     
     const link = document.createElement('div');
 
@@ -35,19 +34,19 @@ function generateCarCards(cars) {
         const card = generateCarCard(carItem);
 
         switch (carItem.origin) {
-            case "Germany":
+            case "mcdonald":
                 containers[0].appendChild(card);
                 break;
-            case "Japan":
+            case "kfc":
                 containers[1].appendChild(card);
                 break;
-            case "USA":
+            case "burgerking":
                 containers[2].appendChild(card);
                 break;
-            case "Italy":
+            case "burgers":
                 containers[3].appendChild(card);
                 break;
-            case "Russia":
+            case "fstrest":
                 containers[4].appendChild(card);
                 break;
         }
