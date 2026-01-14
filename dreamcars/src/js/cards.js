@@ -13,7 +13,6 @@ function generateCarCard({name, img, origin}) {
 
     const title = document.createElement('h3');
     title.textContent = name;
-    title.classList.add("car-name");
     
     const link = document.createElement('div');
 
