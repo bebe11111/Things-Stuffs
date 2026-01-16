@@ -13,6 +13,10 @@ function generateCarCard({name, img, origin, type, eaten}) {
 
     const title = document.createElement('h3');
     title.textContent = name;
+
+    const div = document.createElement('div');
+    div.textContent = origin;
+    div.classList.add("origin")
     
     const link = document.createElement('div');
 
@@ -23,7 +27,7 @@ function generateCarCard({name, img, origin, type, eaten}) {
 
     link.append(a);
 
-    card.append(image,title,link);
+    card.append(image,title,div,link);
 
     return card;
 }
