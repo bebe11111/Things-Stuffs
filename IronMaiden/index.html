@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Maiden - Eddie Univerzum</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maidenRed: '#e60000',
+                        maidenDarkRed: '#800000',
+                        maidenGold: '#d4af37',
+                    },
+                    fontSize: {
+                        'base': '1.25rem',
+                    },
+                    fontFamily: {
+                        metal: ['Metal Mania', 'cursive'],
+                        oswald: ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #050505;
+            color: #f1f1f1;
+            overflow-x: hidden;
+        }
+
+        /* Dynamic Glow Effects for Metal Typography */
+        .text-glow-red {
+            text-shadow: 0 0 15px rgba(255, 42, 42, 0.9), 0 0 35px rgba(255, 42, 42, 0.5);
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.9), 0 0 35px rgba(0, 240, 255, 0.5);
+        }
+        .text-glow-gold {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9), 0 0 35px rgba(255, 215, 0, 0.5);
+        }
+        .text-glow-green {
+            text-shadow: 0 0 15px rgba(46, 204, 113, 0.9), 0 0 35px rgba(46, 204, 113, 0.5);
+        }
+        .text-glow-purple {
+            text-shadow: 0 0 15px rgba(177, 94, 255, 0.9), 0 0 35px rgba(177, 94, 255, 0.5);
+        }
+
+        /* Hero Slide Radial Ambient Backgrounds */
+        .bg-slide-red {
+            background: radial-gradient(circle at center, #4a0000 0%, #1a0000 55%, #050505 100%);
+        }
+        .bg-slide-cyan {
+            background: radial-gradient(circle at center, #003642 0%, #001219 55%, #050505 100%);
+        }
+        .bg-slide-gold {
+            background: radial-gradient(circle at center, #422d00 0%, #1a1100 55%, #050505 100%);
+        }
+        .bg-slide-green {
+            background: radial-gradient(circle at center, #033a2d 0%, #011710 55%, #050505 100%);
+        }
+        .bg-slide-purple {
+            background: radial-gradient(circle at center, #3b147d 0%, #170736 55%, #050505 100%);
+        }
+
+
+        /* Eddie Card Styling */
+        .eddie-card {
+            border-radius: 20px;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .eddie-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(230, 0, 0, 0.65), 0 0 20px rgba(230, 0, 0, 0.4);
+            border-color: #e60000;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #800000;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e60000;
+        }
+
+        /* Mobile Fluid Typography Clamps */
+        .hero-title {
+            font-size: clamp(1.75rem, 8vw, 6.5rem);
+            line-height: 1.08;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.85rem, 3.2vw, 1.5rem);
+            line-height: 1.3;
+        }
+
+        @media (min-width: 1500px) {
+            .text-base {
+                font-size: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-100 flex flex-col min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 border-b-2 border-maidenRed backdrop-blur-md shadow-2xl">
+        <div class="max-w-[1850px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#kezdolap" class="flex items-center space-x-3 group">
+                    <span class="font-metal text-3xl md:text-4xl text-white tracking-widest text-glow-red group-hover:text-maidenRed transition-colors">
+                        IRON MAIDEN
+                    </span>
+                    <span class="hidden sm:inline-block text-xs uppercase tracking-widest text-maidenGold border-l border-red-900 pl-3">
+                        EDDIE UNIVERZUM
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#kezdolap" class="text-gray-300 hover:text-maidenRed text-lg font-bold tracking-wider uppercase transition-colors">Kezdőlap</a>
+                    <a href="#galeria" class="text-gray-300 hover:text-maidenRed text-lg font-bold tracking-wider uppercase transition-colors">Eddie Galéria</a>
+                    <a href="#tortenet" class="text-gray-300 hover:text-maidenRed text-lg font-bold tracking-wider uppercase transition-colors">Eddie Története</a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white p-2 rounded-lg focus:outline-none" aria-label="Menü megnyitása">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-b border-maidenRed px-4 pt-2 pb-6 space-y-3 shadow-2xl">
+            <a href="#kezdolap" class="mobile-link block text-gray-300 hover:text-maidenRed font-bold text-lg uppercase py-2 border-b border-zinc-800">Kezdőlap</a>
+            <a href="#galeria" class="mobile-link block text-gray-300 hover:text-maidenRed font-bold text-lg uppercase py-2 border-b border-zinc-800">Eddie Galéria</a>
+            <a href="#tortenet" class="mobile-link block text-gray-300 hover:text-maidenRed font-bold text-lg uppercase py-2 border-b border-zinc-800">Eddie Története</a>
+        </div>
+    </nav>
+
+    <!-- Hero Slideshow Section -->
+    <section id="kezdolap" class="pt-20 relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] bg-zinc-950 overflow-hidden border-b-4 border-maidenRed">
+        <div id="slideshow-container" class="relative w-full h-full select-none cursor-grab active:cursor-grabbing">
+            
+            <!-- Slide 1: Red Theme -->
+            <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out bg-slide-red">
+                <div class="absolute inset-0 bg-[radial-gradient(#e60000_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10 max-w-5xl mx-auto">
+                    <h1 class="font-metal hero-title text-[#ff2a2a] text-glow-red mb-3 tracking-widest uppercase">
+                        EDDIE THE HEAD
+                    </h1>
+                    <p class="hero-subtitle text-maidenGold font-light uppercase tracking-widest max-w-2xl">
+                        A Heavy Metal Történelmének Legfélelmetesebb Kabalája
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 2: Cyan Theme -->
+            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-slide-cyan">
+                <div class="absolute inset-0 bg-[radial-gradient(#00f0ff_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10 max-w-5xl mx-auto">
+                    <h1 class="font-metal hero-title text-[#00f0ff] text-glow-cyan mb-3 tracking-widest uppercase">
+                        SOMEWHERE IN TIME
+                    </h1>
+                    <p class="hero-subtitle text-cyan-200 font-light uppercase tracking-widest max-w-2xl">
+                        Futurisztikus Kiborg Harcos A Cyberpunk Jövőben
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 3: Gold Theme -->
+            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-slide-gold">
+                <div class="absolute inset-0 bg-[radial-gradient(#ffd700_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10 max-w-5xl mx-auto">
+                    <h1 class="font-metal hero-title text-[#ffd700] text-glow-gold mb-3 tracking-widest uppercase">
+                        POWERSLAVE MUMMY
+                    </h1>
+                    <p class="hero-subtitle text-yellow-200 font-light uppercase tracking-widest max-w-2xl">
+                        Az Ősi Egyiptomi Piramisok És Istenek Ura
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 4: Emerald Green Theme -->
+            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-slide-green">
+                <div class="absolute inset-0 bg-[radial-gradient(#2ecc71_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10 max-w-5xl mx-auto">
+                    <h1 class="font-metal hero-title text-[#2ecc71] text-glow-green mb-3 tracking-widest uppercase">
+                        FEAR OF THE DARK
+                    </h1>
+                    <p class="hero-subtitle text-emerald-200 font-light uppercase tracking-widest max-w-2xl">
+                        A Sötét Éjszaka És Az Erdő Rémisztő Fa-Szörnyetege
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 5: Purple Theme -->
+            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-slide-purple">
+                <div class="absolute inset-0 bg-[radial-gradient(#b15eff_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10 max-w-5xl mx-auto">
+                    <h1 class="font-metal hero-title text-[#b15eff] text-glow-purple mb-3 tracking-widest uppercase">
+                        SENJUTSU SAMURAI
+                    </h1>
+                    <p class="hero-subtitle text-purple-200 font-light uppercase tracking-widest max-w-2xl">
+                        Japán Sötét Katanás Páncélosa A Legújabb Korban
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide Controls (Hidden on mobile) -->
+        <button id="prev-slide" class="hidden sm:flex absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-maidenRed text-white p-3 rounded-full border border-zinc-700 transition-colors z-20 items-center justify-center" aria-label="Előző slide">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button id="next-slide" class="hidden sm:flex absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-maidenRed text-white p-3 rounded-full border border-zinc-700 transition-colors z-20 items-center justify-center" aria-label="Következő slide">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+
+        <!-- Dynamic Slide Indicators -->
+        <div id="slide-dots" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex space-x-3 z-20">
+            <button class="dot w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-maidenRed transition-all" data-index="0"></button>
+            <button class="dot w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-zinc-600 transition-all" data-index="1"></button>
+            <button class="dot w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-zinc-600 transition-all" data-index="2"></button>
+            <button class="dot w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-zinc-600 transition-all" data-index="3"></button>
+            <button class="dot w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-zinc-600 transition-all" data-index="4"></button>
+        </div>
+    </section>
+
+    <!-- Eddie Gallery Grid Section -->
+    <section id="galeria" class="w-full max-w-7xl min-[1500px]:max-w-[1850px] mx-auto px-4 sm:px-8 lg:px-12 py-16">
+        <div class="text-center mb-16">
+            <h2 class="font-metal text-5xl md:text-6xl min-[1500px]:text-7xl text-white text-glow-red inline-block border-b-4 border-maidenRed pb-3">
+                EDDIE GALÉRIA
+            </h2>
+            <p class="mt-4 text-gray-400 text-lg min-[1500px]:text-xl uppercase tracking-wider">
+                Az Összes Ikonikus Eddie Inkarnáció (1980 – 2021)
+            </p>
+        </div>
+
+        <!-- Dynamic Grid: 4 wide columns with 48px gap on screens 1500px and larger -->
+        <div id="cards-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 min-[1500px]:grid-cols-4 gap-8 min-[1500px]:gap-12">
+            <!-- Dynamic JavaScript Content -->
+        </div>
+    </section>
+
+    <!-- Eddie History Section -->
+    <section id="tortenet" class="w-full bg-gradient-to-b from-zinc-950 via-zinc-900 to-black py-20 border-t border-b border-red-950">
+        <div class="max-w-6xl min-[1500px]:max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div class="text-center mb-16">
+                <h2 class="font-metal text-5xl md:text-6xl min-[1500px]:text-7xl text-white text-glow-red inline-block border-b-4 border-maidenRed pb-3">
+                    EDDIE TÖRTÉNETE
+                </h2>
+                <p class="mt-4 text-gray-400 text-xl uppercase tracking-widest font-light">
+                    A szerény papírmasé maszktól a globális popkulturális ikonig
+                </p>
+            </div>
+
+            <!-- Timeline Structure -->
+            <div class="relative border-l-2 border-maidenRed/50 ml-4 md:ml-32 space-y-12">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-maidenRed border-4 border-black group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-zinc-900/90 border border-zinc-800 rounded-3xl p-6 md:p-8 min-[1500px]:p-10 shadow-xl">
+                        <span class="inline-block bg-maidenRed text-white font-bold text-sm px-4 py-1.5 rounded-full mb-3 uppercase tracking-wider">1979</span>
+                        <h3 class="font-metal text-3xl min-[1500px]:text-4xl text-white mb-2">A Színpadi Maszk Korszaka</h3>
+                        <p class="text-gray-300 leading-relaxed font-light text-lg min-[1500px]:text-xl">
+                            Mielőtt rajzolt karakterré vált volna, Eddie egy kézzel készített papírmasé maszk volt, amelyet az Iron Maiden korai koncertjein a dobos mögé rögzítettek. A korai koncerteken szivattyúk segítségével művért fecskendeztek ki a szájából, teátrális sokkeffektust keltve a közönségben.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-maidenRed border-4 border-black group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-zinc-900/90 border border-zinc-800 rounded-3xl p-6 md:p-8 min-[1500px]:p-10 shadow-xl">
+                        <span class="inline-block bg-maidenRed text-white font-bold text-sm px-4 py-1.5 rounded-full mb-3 uppercase tracking-wider">1980</span>
+                        <h3 class="font-metal text-3xl min-[1500px]:text-4xl text-white mb-2">A Hivatalos Illusztráció Bemutatkozása</h3>
+                        <p class="text-gray-300 leading-relaxed font-light text-lg min-[1500px]:text-xl">
+                            Rod Smallwood menedzser felfedezte Derek Riggs rajzát, amely eredetileg egy punk ihletésű műalkotás volt. A zenekar felkérésére a karakter hajat kapott, és így született meg a debütáló <em class="text-white">Iron Maiden</em> lemez borítóján látható híres londoni zombi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-maidenRed border-4 border-black group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-zinc-900/90 border border-zinc-800 rounded-3xl p-6 md:p-8 min-[1500px]:p-10 shadow-xl">
+                        <span class="inline-block bg-maidenRed text-white font-bold text-sm px-4 py-1.5 rounded-full mb-3 uppercase tracking-wider">1981 – 1988</span>
+                        <h3 class="font-metal text-3xl min-[1500px]:text-4xl text-white mb-2">A Heavy Metal Aranykora</h3>
+                        <p class="text-gray-300 leading-relaxed font-light text-lg min-[1500px]:text-xl">
+                            A '80-as években Eddie a műfaj legmeghatározóbb szimbólumává vált. Megjelent baltás gyilkosként (<em class="text-white">Killers</em>), az Ördögöt irányító bábjátékosként (<em class="text-white">The Number of the Beast</em>), kényszerzubbonyt viselő ápoltként (<em class="text-white">Piece of Mind</em>), ókori fáraóként (<em class="text-white">Powerslave</em>) és cyber-kiborgként (<em class="text-white">Somewhere in Time</em>).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-maidenRed border-4 border-black group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-zinc-900/90 border border-zinc-800 rounded-3xl p-6 md:p-8 min-[1500px]:p-10 shadow-xl">
+                        <span class="inline-block bg-maidenRed text-white font-bold text-sm px-4 py-1.5 rounded-full mb-3 uppercase tracking-wider">1992 – 1998</span>
+                        <h3 class="font-metal text-3xl min-[1500px]:text-4xl text-white mb-2">Sötétebb Kísérleti Korszak</h3>
+                        <p class="text-gray-300 leading-relaxed font-light text-lg min-[1500px]:text-xl">
+                            Az 1992-es <em class="text-white">Fear of the Dark</em> borítóján Eddie egy hátborzongató fává változott. Később, a korai 3D-s grafikák és a fotórealisztikus boncolási képek (<em class="text-white">The X Factor</em>) egy még sötétebb, nyomasztóbb dimenzióba emelték a karaktert.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-maidenRed border-4 border-black group-hover:scale-125 transition-transform"></div>
+                    <div class="bg-zinc-900/90 border border-zinc-800 rounded-3xl p-6 md:p-8 min-[1500px]:p-10 shadow-xl">
+                        <span class="inline-block bg-maidenRed text-white font-bold text-sm px-4 py-1.5 rounded-full mb-3 uppercase tracking-wider">2000 – Napjainkig</span>
+                        <h3 class="font-metal text-3xl min-[1500px]:text-4xl text-white mb-2">Modern Digitális Éra & Senjutsu</h3>
+                        <p class="text-gray-300 leading-relaxed font-light text-lg min-[1500px]:text-xl">
+                            A 21. században Eddie gigantikus 3D-s látványelemként, számítógépes játékok főhőseként és virtuális ikonsorozatként éledt újjá. A maja kultúrájú <em class="text-white">The Book of Souls</em> után a 2021-es <em class="text-white">Senjutsu</em> albumon egy rendkívül részletes szamuráj páncélban tűnt fel.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Dialog (Scales up substantially on screens >= 1500px) -->
+    <div id="eddie-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4 min-[1500px]:p-12 opacity-0 transition-opacity duration-300">
+        <div id="modal-box" class="bg-zinc-950 border-2 border-maidenRed rounded-[24px] min-[1500px]:rounded-[36px] max-w-4xl min-[1500px]:max-w-6xl w-full max-h-[90vh] min-[1500px]:max-h-[85vh] overflow-hidden relative shadow-[0_0_60px_rgba(230,0,0,0.65)] transform scale-95 transition-transform duration-300 flex flex-col md:flex-row">
+            
+            <!-- Close Button (X) - Extra prominent on 1500px+ -->
+            <button id="modal-close-btn" class="absolute top-4 right-4 min-[1500px]:top-6 min-[1500px]:right-6 bg-black/80 text-gray-300 hover:text-white hover:bg-maidenRed p-2 min-[1500px]:p-3 rounded-full z-20 transition-all border border-zinc-700 min-[1500px]:w-14 min-[1500px]:h-14 flex items-center justify-center shadow-lg" aria-label="Bezárás">
+                <svg class="w-6 h-6 min-[1500px]:w-8 min-[1500px]:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Modal Image Side -->
+            <div class="w-full md:w-1/2 bg-zinc-900 flex items-center justify-center relative border-b md:border-b-0 md:border-r border-zinc-800 min-[1500px]:min-h-[520px]">
+                <img id="modal-img" src="" alt="Eddie" class="w-full h-full object-cover max-h-[45vh] md:max-h-none min-[1500px]:h-[520px] min-[1500px]:max-h-[650px]">
+            </div>
+
+            <!-- Modal Text Content Side -->
+            <div class="w-full md:w-1/2 p-6 md:p-8 min-[1500px]:p-12 flex flex-col justify-between overflow-y-auto min-[1500px]:gap-6">
+                <div>
+                    <!-- Year Badge -->
+                    <div class="flex items-center space-x-3 mb-3 min-[1500px]:mb-5">
+                        <span id="modal-year" class="bg-maidenRed text-white text-xs min-[1500px]:text-base font-bold px-3 py-1 min-[1500px]:px-5 min-[1500px]:py-2 rounded-full uppercase tracking-wider"></span>
+                    </div>
+
+                    <!-- English Title & Album Name -->
+                    <h3 id="modal-title" class="font-metal text-3xl md:text-4xl min-[1500px]:text-5xl text-white mb-2 min-[1500px]:mb-4"></h3>
+                    <h4 id="modal-album" class="text-lg min-[1500px]:text-2xl text-maidenRed font-bold uppercase tracking-widest mb-4 min-[1500px]:mb-6 border-b border-zinc-800 pb-3 min-[1500px]:pb-5"></h4>
+
+                    <!-- Hungarian Story Description -->
+                    <p id="modal-desc" class="text-gray-300 font-light leading-relaxed text-base md:text-lg min-[1500px]:text-xl min-[1500px]:leading-loose mb-6 min-[1500px]:mb-8"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-zinc-800 py-12 text-center mt-auto">
+        <p class="font-metal text-4xl text-white text-glow-red mb-2 tracking-widest">UP THE IRONS!</p>
+        <p class="text-gray-500 text-sm font-light">
+            © 2026 Iron Maiden Fan Page. Designed with Heavy Metal passion.
+        </p>
+    </footer>
+
+    <!-- JavaScript Interactions & Data -->
+    <script>
+        const eddieData = [
+            {
+                id: 1,
+                name: "Eddie the Head",
+                album: "Iron Maiden",
+                year: 1980,
+                desc: "Az Iron Maiden legelső stúdióalbumának borítóján debütáló eredeti Eddie. Egy veszedelmes, sárgás szemű utcai zombi London éjszakai negyedében.",
+                img: "https://placehold.co/800x800/1a0000/ffffff?text=Iron+Maiden+1980"
+            },
+            {
+                id: 2,
+                name: "Sanctuary Eddie",
+                album: "Sanctuary (Single)",
+                year: 1980,
+                desc: "Az egyik legvitatottabb korai kiadás borítója, ahol Eddie késsel látható az akkori brit miniszterelnök, Margaret Thatcher teste felett.",
+                img: "https://placehold.co/800x800/200000/ffffff?text=Sanctuary+1980"
+            },
+            {
+                id: 3,
+                name: "Killers Eddie",
+                album: "Killers",
+                year: 1981,
+                desc: "Eddie egy véres baltát szorongat, miközben áldozata a ruhájába kapaszkodik. A háttérben látható sötét sikátorok és a holdfény az egyik legikonikusabb Maiden borítóvá tették.",
+                img: "https://placehold.co/800x800/2b0000/ffffff?text=Killers+1981"
+            },
+            {
+                id: 4,
+                name: "The Number of the Beast Eddie",
+                album: "The Number of the Beast",
+                year: 1982,
+                desc: "A heavy metal történetének egyik leghíresebb képe: Eddie mint egy bábjátékos irányítja magát a Sátánt, miközben a pokoli tűz veszi körül őket.",
+                img: "https://placehold.co/800x800/3d0000/ffffff?text=Number+of+the+Beast"
+            },
+            {
+                id: 5,
+                name: "Piece of Mind Eddie",
+                album: "Piece of Mind",
+                year: 1983,
+                desc: "Lobotomizált, kényszerzubbonyba zárt Eddie egy gumírozott elmegyógyintézeti cellában, láncokkal megkötözve.",
+                img: "https://placehold.co/800x800/111111/e60000?text=Piece+of+Mind"
+            },
+            {
+                id: 6,
+                name: "The Trooper Eddie",
+                album: "The Trooper (Single)",
+                year: 1983,
+                desc: "A balaklavai csata által ihletett Eddie katonai egyenruhában, véres karddal és egy megtépázott brit zászlóval (Union Jack) a csatatéren.",
+                img: "https://placehold.co/800x800/000033/ffffff?text=The+Trooper"
+            },
+            {
+                id: 7,
+                name: "Powerslave Mummy Eddie",
+                album: "Powerslave",
+                year: 1984,
+                desc: "Egy gigantikus ókori egyiptomi piramis homlokzatán fáraóként tornyosuló mumifikálódott Eddie szobor.",
+                img: "https://placehold.co/800x800/332200/ffffff?text=Powerslave"
+            },
+            {
+                id: 8,
+                name: "Live After Death Eddie",
+                album: "Live After Death",
+                year: 1985,
+                desc: "Eddie kísérteties körülmények között tör ki a sírjából egy villámcsapás kíséretében. H.P. Lovecraft idézettel a sírkövén.",
+                img: "https://placehold.co/800x800/0f172a/38bdf8?text=Live+After+Death"
+            },
+            {
+                id: 9,
+                name: "Somewhere in Time Cyborg Eddie",
+                album: "Somewhere in Time",
+                year: 1986,
+                desc: "Cyberpunk stílusú gép-ember hibrid Eddie lézerfegyverrel a neonfényes jövőbeli metropoliszban.",
+                img: "https://placehold.co/800x800/082f49/38bdf8?text=Somewhere+in+Time"
+            },
+            {
+                id: 10,
+                name: "Seventh Son Eddie",
+                album: "Seventh Son of a Seventh Son",
+                year: 1988,
+                desc: "A jeges szürreális táj felett lebegő torzó Eddie, aki kezében saját belső szerveit holdfényes misztikumban tartja.",
+                img: "https://placehold.co/800x800/172554/93c5fd?text=Seventh+Son"
+            },
+            {
+                id: 11,
+                name: "No Prayer Eddie",
+                album: "No Prayer for the Dying",
+                year: 1990,
+                desc: "Eddie kitör a kriptájából egy sötét éjszakán, visszaállítva a klasszikus zombi-horror hangulatot.",
+                img: "https://placehold.co/800x800/18181b/f43f5e?text=No+Prayer"
+            },
+            {
+                id: 12,
+                name: "Fear of the Dark Tree Eddie",
+                album: "Fear of the Dark",
+                year: 1992,
+                desc: "Az első stúdióalbum, ahol Eddie egy fenyegető fa ágaivá és törzsévé változik a telihold alatt.",
+                img: "https://placehold.co/800x800/022c22/4ade80?text=Fear+of+the+Dark"
+            },
+            {
+                id: 13,
+                name: "The X Factor Eddie",
+                album: "The X Factor",
+                year: 1995,
+                desc: "Sötét, valósághű és sokkoló 3D-s megformálás: egy villamosszékhez és műtőasztalhoz kötözött Eddie.",
+                img: "https://placehold.co/800x800/450a0a/f87171?text=The+X+Factor"
+            },
+            {
+                id: 14,
+                name: "Virtual XI Eddie",
+                album: "Virtual XI",
+                year: 1998,
+                desc: "Virtuális valóságban tomboló ördögi Eddie, aki a digitális világ felett veszi át az uralmat.",
+                img: "https://placehold.co/800x800/14532d/86efac?text=Virtual+XI"
+            },
+            {
+                id: 15,
+                name: "Brave New World Eddie",
+                album: "Brave New World",
+                year: 2000,
+                desc: "A visszatérő sikeralbum korszakában Eddie egy gigantikus füstfelhőként és pogány fafonat monstrumként éled újjá.",
+                img: "https://placehold.co/800x800/1e1b4b/c084fc?text=Brave+New+World"
+            },
+            {
+                id: 16,
+                name: "Dance of Death Eddie",
+                album: "Dance of Death",
+                year: 2003,
+                desc: "Eddie mint a Kaszás (Grim Reaper) fekete köpenyben, amint a haláltáncot vezeti a teátrális maszkabálban.",
+                img: "https://placehold.co/800x800/451a03/fbbf24?text=Dance+of+Death"
+            },
+            {
+                id: 17,
+                name: "AMOLAD Soldier Eddie",
+                album: "A Matter of Life and Death",
+                year: 2006,
+                desc: "Csontváz sereg élén haladó katonai tankparancsnok Eddie a háború szétlőtt övezetében.",
+                img: "https://placehold.co/800x800/1c1917/a8a29e?text=A+Matter+of+Life"
+            },
+            {
+                id: 18,
+                name: "Final Frontier Alien Eddie",
+                album: "The Final Frontier",
+                year: 2010,
+                desc: "Földönkívüli ragadozó Eddie a mélyűrben, aki egy megsemmisült űrhajó roncsainál vadászik.",
+                img: "https://placehold.co/800x800/030712/38bdf8?text=Final+Frontier"
+            },
+            {
+                id: 19,
+                name: "Book of Souls Mayan Eddie",
+                album: "The Book of Souls",
+                year: 2015,
+                desc: "Ősi maja sámán Eddie rituális arcfestéssel a koromsötét háttér előtt.",
+                img: "https://placehold.co/800x800/000000/e2e8f0?text=The+Book+of+Souls"
+            },
+            {
+                id: 20,
+                name: "Senjutsu Samurai Eddie",
+                album: "Senjutsu",
+                year: 2021,
+                desc: "Feudális japán szamuráj páncélban, katanát forgató könyörtelen harcos Eddie.",
+                img: "https://placehold.co/800x800/312e81/818cf8?text=Senjutsu"
+            }
+        ];
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const slideThemeColors = ['#e60000', '#00f0ff', '#ffd700', '#2ecc71', '#b15eff'];
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((s, i) => {
+                s.style.opacity = i === index ? '1' : '0';
+            });
+            dots.forEach((d, i) => {
+                if (i === index) {
+                    d.style.backgroundColor = slideThemeColors[index];
+                    d.classList.remove('bg-zinc-600');
+                } else {
+                    d.style.backgroundColor = '';
+                    d.classList.add('bg-zinc-600');
+                }
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            showSlide((currentSlide + 1) % slides.length);
+        }
+
+        function prevSlide() {
+            showSlide((currentSlide - 1 + slides.length) % slides.length);
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 4500);
+        }
+
+        function resetSlideshow() {
+            clearInterval(slideInterval);
+            startSlideshow();
+        }
+
+        document.getElementById('next-slide').addEventListener('click', () => { nextSlide(); resetSlideshow(); });
+        document.getElementById('prev-slide').addEventListener('click', () => { prevSlide(); resetSlideshow(); });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                const idx = parseInt(e.target.dataset.index);
+                showSlide(idx);
+                resetSlideshow();
+            });
+        });
+
+        showSlide(0);
+        startSlideshow();
+
+        // Mobile Touch & Swipe Gestures
+        const slideshowElem = document.getElementById('slideshow-container');
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slideshowElem.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slideshowElem.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 35;
+            if (touchEndX < touchStartX - threshold) {
+                nextSlide();
+                resetSlideshow();
+            } else if (touchEndX > touchStartX + threshold) {
+                prevSlide();
+                resetSlideshow();
+            }
+        }
+
+        const cardsContainer = document.getElementById('cards-container');
+
+        function renderCards() {
+            cardsContainer.innerHTML = '';
+            eddieData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'eddie-card bg-zinc-900 border border-zinc-800 overflow-hidden cursor-pointer flex flex-col justify-between group relative';
+                
+                card.innerHTML = `
+                    <div class="h-64 sm:h-72 min-[1500px]:h-[420px] w-full overflow-hidden relative">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-black/80 text-maidenRed border border-red-900 font-bold text-xs min-[1500px]:text-sm px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+                            ${item.year}
+                        </span>
+                    </div>
+                    <div class="p-6 min-[1500px]:p-8 flex-grow flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs min-[1500px]:text-sm text-maidenGold font-bold uppercase tracking-widest mb-1.5">${item.album}</p>
+                            <h3 class="font-metal text-2xl min-[1500px]:text-3xl text-white group-hover:text-maidenRed transition-colors leading-snug">${item.name}</h3>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => openModal(item));
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        renderCards();
+
+        const modal = document.getElementById('eddie-modal');
+        const modalBox = document.getElementById('modal-box');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalAlbum = document.getElementById('modal-album');
+        const modalYear = document.getElementById('modal-year');
+        const modalDesc = document.getElementById('modal-desc');
+
+        function openModal(item) {
+            modalImg.src = item.img;
+            modalImg.alt = item.name;
+            modalTitle.textContent = item.name;
+            modalAlbum.textContent = item.album;
+            modalYear.textContent = item.year;
+            modalDesc.textContent = item.desc;
+
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            });
+
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        /* Mobile Menu Navigation Switcher */
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
