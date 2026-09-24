@@ -62,7 +62,7 @@ h3{
   margin-top: 1rem;
 }
 
-.container {
+.recipes {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -203,7 +203,7 @@ header a:hover{
   padding: 0.5rem 0 0;
 }
 
-#cars2 > h2{
+#recipes > h2{
   margin: 3rem 8rem;
   font-size: 2.4rem;
   color: white;

@@ -46,4 +46,6 @@ const cars = [
   { name: "Lada VAZ-2107", img: "src/img/lada_2107.jpg", origin: "Russia" },
   { name: "Mazda 6e takumi plus 2026", img: "", origin: "Japán" },
   { name: "Lancia delta hf 1986", img: "", origin: "" },
+  { name: "Toyota Corolla Touring Sports 2026", img: "", origin: "" },
+
 ];
